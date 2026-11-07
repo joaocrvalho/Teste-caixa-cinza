@@ -1,0 +1,280 @@
+{
+  "info": {
+    "_postman_id": "9a5f29d5-30b8-4680-b3f5-0d4b14669cb7",
+    "name": "teste_caixa_cinza API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "39994118"
+  },
+  "item": [
+    {
+      "name": "Login valido",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code é 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Resposta contém access_token\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"access_token\");\r\n    pm.environment.set(\"access_token\", jsonData.access_token);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "apikey",
+            "value": "{{api_key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{senha}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/v1/token?grant_type=password",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "v1",
+            "token"
+          ],
+          "query": [
+            {
+              "key": "grant_type",
+              "value": "password"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Senha incorreta",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code é 400 (erro esperado)\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"Mensagem de erro é 'Senha incorreta'\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.msg).to.include(\"Invalid login credentials\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "apikey",
+            "value": "{{api_key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/v1/token?grant_type=password",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "v1",
+            "token"
+          ],
+          "query": [
+            {
+              "key": "grant_type",
+              "value": "password"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Usuário inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code é 400 (erro esperado)\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"Mensagem de erro é 'Usuário não encontrado'\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.msg).to.include(\"Invalid login credentials\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "apikey",
+            "value": "{{api_key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"inexistente@gmail.com\",\r\n    \"password\": \"{{senha}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/v1/token?grant_type=password",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "v1",
+            "token"
+          ],
+          "query": [
+            {
+              "key": "grant_type",
+              "value": "password"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Campos vazios",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code é 400 (erro esperado)\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"Mensagem de erro é 'Obrigatório prencher com email e senha'\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.msg).to.include(\"missing email or phone\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "apikey",
+            "value": "{{api_key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/v1/token?grant_type=password",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "v1",
+            "token"
+          ],
+          "query": [
+            {
+              "key": "grant_type",
+              "value": "password"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Credenciais inválidas",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\npm.test(\"Status code é 400 (erro esperado)\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"Mensagem de erro é 'Credenciais de acesso erradas'\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.msg).to.include(\"Invalid login credentials\");\r\n});\r\n\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "apikey",
+            "value": "{{api_key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"joao@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/v1/token?grant_type=password",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "v1",
+            "token"
+          ],
+          "query": [
+            {
+              "key": "grant_type",
+              "value": "password"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
