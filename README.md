@@ -171,36 +171,36 @@ Os cinco cenários foram executados com a mesma requisição, alterando apenas o
 ### 1 - Login válido
 
 ![Login válido](prints/login-valido-body.jpg)
-![Login válido](prints/login-valido-scripts.jpg)
+![Login válido](prints/login-valido-script.jpg)
 ![Login válido](prints/login-valido-resposta.jpg)
-![Login válido](prints/login-valido-test.jpg)
+![Login válido](prints/login-valido-testes.jpg)
 
 ### 2 - Senha incorreta
 
 ![Senha incorreta](prints/senha-incorreta-body.jpg)
 ![Senha incorreta](prints/senha-incorreta-scripts.jpg)
-![Senha incorreta](prints/senha-incorreta-resultado.jpg)
+![Senha incorreta](prints/senha-incorreta-resposta.jpg)
 ![Senha incorreta](prints/senha-incorreta-test.jpg)
 
 ### 3 - Usuário inexistente
 
 ![Usuário inexistente](prints/usuario-inexistente-body.jpg)
 ![Usuário inexistente](prints/usuario-inexistente-scripts.jpg)
-![Usuário inexistente](prints/usuario-inexistente-resultado.jpg)
+![Usuário inexistente](prints/usuario-inexistente-resposta.jpg)
 ![Usuário inexistente](prints/usuario-inexistente-test.jpg)
 
 ### 4 - Campos vazios
 
 ![Campos vazios](prints/campos-vazios-body.jpg)
 ![Campos vazios](prints/campos-vazios-scripts.jpg)
-![Campos vazios](prints/campos-vazios-resultado.jpg)
+![Campos vazios](prints/campos-vazios-resposta.jpg)
 ![Campos vazios](prints/campos-vazios-test.jpg)
 
 ### 5 - Credenciais inválidas 
 
 ![Credenciais inválidas](prints/credenciais-invalidas-body.jpg)
 ![Credenciais inválidas](prints/credenciais-invalidas-scripts.jpg)
-![Credenciais inválidas](prints/credenciais-invalidas-resultado.jpg)
+![Credenciais inválidas](prints/credenciais-invalidas-resposta.jpg)
 ![Credenciais inválidas](prints/credenciais-invalidas-test.jpg)
 
 ---
@@ -219,8 +219,7 @@ Registrar os testes permite repetir os cenários, comparar o comportamento esper
 
 | Evidência | Arquivo |
 |---|---|
-| Planilha preenchida | ![Planilha](prints/planilha.png) |
-| Arquivo da planilha | [planilha/](planilha/) |
+| Planilha preenchida | ![Planilha](prints/planilha.jpg) |
 
 ---
 
@@ -250,7 +249,7 @@ Os testes de caixa cinza foram executados no Postman sobre a API de autenticaç�
 
 **Melhorias que poderiam ser implementadas:**
 
-- Incluir mais casos, como e-mail com formato inválido, senha muito curta, caracteres especiais, requisição sem a `apikey` e uso de token expirado
+- Incluir mais casos, como e-mail com formato inválido, senha muito curta, caracteres especiais, requisição sem a apikey e uso de token expirado
 - Validar o tempo de resposta e o limite de tentativas
 - Padronizar o registro dos resultados em um relatório gerado automaticamente
 
